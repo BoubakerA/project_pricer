@@ -1,1 +1,6 @@
 *.out
+*.exe
+*.ilk
+*.obj
+*.pdb
+*.json
