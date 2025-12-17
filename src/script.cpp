@@ -9,6 +9,9 @@ double norm_pdf(const double& x) {
     return (1.0/(pow(2*M_PI,0.5)))*exp(-0.5*x*x);
 }
 
+
+
+
 // An approximation to the cumulative distribution function
 double norm_cdf(double x) {
     return 0.5 * (1.0 + std::erf(x / std::sqrt(2.0)));
