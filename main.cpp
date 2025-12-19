@@ -1,6 +1,7 @@
 #include <iostream>
 #include "include/european_option.hpp"
 #include "include/black_and_scholes_pricer.hpp"
+#include "include/monte_carlo_pricer.hpp"
 
 int main() {
     EuropeanOption call(
@@ -9,6 +10,8 @@ int main() {
     );
 
     BlackAndScholesPricer bs;
+    MonteCarloPricer mc(100000);
 
     std::cout << "BS Price: " << bs.price(call) << "\n";
+    std::cout << "MC Price: " << mc.price(call) << "\n";
 }

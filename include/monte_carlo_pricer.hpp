@@ -1,4 +1,4 @@
-// monte_carlo_pricer.hpp
+
 #ifndef MONTE_CARLO_PRICER_HPP
 #define MONTE_CARLO_PRICER_HPP
 
