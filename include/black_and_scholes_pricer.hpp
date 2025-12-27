@@ -6,6 +6,7 @@
 
 class BlackAndScholesPricer : public Pricer {
 private:
+    // Functions do not modify the object.
     double norm_cdf(double x) const;
     double d_j(int j, const Option& opt) const;
 
