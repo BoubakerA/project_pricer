@@ -2,6 +2,11 @@
 #ifndef OPTION_HPP
 #define OPTION_HPP
 
+#include <vector>
+#include <stdexcept>
+#include "types.hpp"  
+
+
 class Option {
 protected:
     double S_;   // spot
@@ -16,8 +21,21 @@ public:
 
     virtual ~Option() = default;
 
-    virtual double payoff(double ST) const = 0;
+    // Terminal payoff (European-style)
+    virtual double payoff(double ST) const {
+        throw std::logic_error("Terminal payoff not implemented");
+    }
 
+    // Path-dependent payoff (Asian, Barrier, etc.)
+    virtual double payoff(const std::vector<double>& path) const {
+        throw std::logic_error("Path payoff not implemented");
+    }
+
+    virtual bool isPathDependent() const { return false; }
+
+    virtual OptionType type() const { throw std::logic_error("type() not implemented"); }
+
+    
     double S() const { return S_; }
     double K() const { return K_; }
     double r() const { return r_; }
