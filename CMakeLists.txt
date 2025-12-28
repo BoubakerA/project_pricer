@@ -1,10 +1,21 @@
+# Minimum required CMake version
 cmake_minimum_required(VERSION 3.10)
 
-project(MyProject)
+# Project name
+project(OptionPricer)
 
-add_executable(MyProject src/script.cpp)
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
 
-target_include_directories(MyProject
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/include
+# Add include directory
+include_directories(include)
+
+# Define the source files
+set(SOURCES
+    main.cpp
+    src/black_and_scholes_pricer.cpp
+    src/monte_carlo_pricer.cpp
 )
+
+# Add executable
+add_executable(option_pricer ${SOURCES})
