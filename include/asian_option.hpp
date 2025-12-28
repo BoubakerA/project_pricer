@@ -1,32 +1,38 @@
-// european_option.hpp
-#ifndef EUROPEAN_OPTION_HPP
-#define EUROPEAN_OPTION_HPP
+#ifndef ASIAN_OPTION_HPP
+#define ASIAN_OPTION_HPP
 
 #include "option.hpp"
-#include <algorithm>
+#include "types.hpp"
+#include <vector>
+#include <numeric>
 
-enum class OptionType { Call, Put };
 
 class AsianOption : public Option {
-private:
-    OptionType type_;
-
 public:
-    AsianOptionOption(
+    AsianOption(
         OptionType type,
-        double S, double K, double r, double v, double T
+        double S,
+        double K,
+        double r,
+        double v,
+        double T
     )
         : Option(S, K, r, v, T), type_(type) {}
 
-        
-    double payoff(double ST) const override {
+    bool isPathDependent() const override { return true; }
+
+    double payoff(const std::vector<double>& path) const override {
+        double avg =
+            std::accumulate(path.begin(), path.end(), 0.0) / path.size();
+
         if (type_ == OptionType::Call)
-            return std::max(ST - K_, 0.0);
+            return std::max(avg - K_, 0.0);
         else
-            return std::max(K_ - ST, 0.0);
+            return std::max(K_ - avg, 0.0);
     }
 
-    OptionType type() const { return type_; }
+private:
+    OptionType type_;
 };
 
 #endif

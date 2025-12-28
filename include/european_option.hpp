@@ -1,22 +1,16 @@
-// european_option.hpp
 #ifndef EUROPEAN_OPTION_HPP
 #define EUROPEAN_OPTION_HPP
 
 #include "option.hpp"
+#include "types.hpp"
 #include <algorithm>
 
-enum class OptionType { Call, Put };
-
 class EuropeanOption : public Option {
-private:
-    OptionType type_;
-
 public:
-    EuropeanOption(
-        OptionType type,
-        double S, double K, double r, double v, double T
-    )
+    EuropeanOption(OptionType type, double S, double K, double r, double v, double T)
         : Option(S, K, r, v, T), type_(type) {}
+
+    bool isPathDependent() const override { return false; }
 
     double payoff(double ST) const override {
         if (type_ == OptionType::Call)
@@ -25,7 +19,10 @@ public:
             return std::max(K_ - ST, 0.0);
     }
 
-    OptionType type() const { return type_; }
+    OptionType type() const override { return type_; }
+
+private:
+    OptionType type_;
 };
 
 #endif

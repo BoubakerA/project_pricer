@@ -5,15 +5,16 @@
 #include "pricer.hpp"
 #include <random>
 
-class MonteCarloPricer : public Pricer {
+class MonteCarloPricer {
+public:
+    MonteCarloPricer(int num_sims, int num_steps = 1)
+        : num_sims_(num_sims), num_steps_(num_steps) {}
+
+    double price(const Option& option) const;
+
 private:
     int num_sims_;
-
-public:
-    explicit MonteCarloPricer(int num_sims)
-        : num_sims_(num_sims) {}
-
-    double price(const Option& option) const override;
+    int num_steps_; // utilisé pour les options path-dépendantes
 };
 
 #endif
