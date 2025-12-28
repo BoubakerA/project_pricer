@@ -13,7 +13,6 @@ double BlackAndScholesPricer::d_j(int j, const Option& opt) const {
            / (opt.v() * std::sqrt(opt.T()));
 }
 
-
 double BlackAndScholesPricer::price(const Option& option) const {
     const EuropeanOption& opt =
         dynamic_cast<const EuropeanOption&>(option);
