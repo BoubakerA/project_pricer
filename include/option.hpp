@@ -21,12 +21,12 @@ public:
 
     virtual ~Option() = default;
 
-    // Terminal payoff (European-style)
+    // Terminal payoff 
     virtual double payoff(double ST) const {
         throw std::logic_error("Terminal payoff not implemented");
     }
 
-    // Path-dependent payoff (Asian, Barrier, etc.)
+    // Path-dependent payoff 
     virtual double payoff(const std::vector<double>& path) const {
         throw std::logic_error("Path payoff not implemented");
     }
