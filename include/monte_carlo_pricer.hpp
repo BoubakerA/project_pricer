@@ -1,16 +1,15 @@
-
 #ifndef MONTE_CARLO_PRICER_HPP
 #define MONTE_CARLO_PRICER_HPP
 
 #include "pricer.hpp"
 #include <random>
 
-class MonteCarloPricer {
+class MonteCarloPricer : public Pricer {
 public:
     MonteCarloPricer(int num_sims, int num_steps = 1)
         : num_sims_(num_sims), num_steps_(num_steps) {}
 
-    double price(const Option& option) const;
+    double price(const Option& option) const override;
 
 private:
     int num_sims_;
